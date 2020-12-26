@@ -8,8 +8,11 @@ import com.badlogic.gdx.graphics.*
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import core.Vars.batch
 import core.Vars.world
+import core.game.Player
 import core.graphics.Renderer
 import core.input.DesktopInput
+import core.input.InputHandler
+import core.world.Group
 import core.world.SolidBlock
 
 /** This is the main file.  It starts all the things. */
@@ -30,6 +33,7 @@ object App : Game() {
     override fun render() {
         Logic.update()  // todo: move
         Renderer.render()
+        (Gdx.input.inputProcessor as InputHandler).update()
     }
 
     /** Frees memory */

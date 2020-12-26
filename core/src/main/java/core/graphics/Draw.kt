@@ -43,6 +43,22 @@ object Draw: Disposable {
         shapeRenderer.end()
     }
 
+    fun circle(x: Float, y: Float, radius: Float) {
+        Gdx.gl.glLineWidth(stroke)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
+        shapeRenderer.color = Vars.batch.color
+        shapeRenderer.circle(x, y, radius)
+        shapeRenderer.end()
+    }
+
+    fun circle(x: Float, y: Float, radius: Float, numSegments: Int) {
+        Gdx.gl.glLineWidth(stroke)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
+        shapeRenderer.color = Vars.batch.color
+        shapeRenderer.circle(x, y, radius, numSegments)
+        shapeRenderer.end()
+    }
+
     override fun dispose() {
         shapeRenderer.dispose()
     }

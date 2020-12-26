@@ -5,7 +5,9 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.GL20
 import core.App.camera
 import core.Vars
+import core.Vars.players
 import core.Vars.world
+import core.game.Player
 import core.world.Tile
 import kotlin.math.max
 import kotlin.math.min
@@ -29,6 +31,9 @@ object Renderer {
 
         // Draw each tile
         world.tiles.forEach(Tile::render)
+        Draw.color()
+
+        players.forEach(Player::render)
         Draw.color()
 
         Vars.batch.end()

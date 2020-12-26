@@ -2,10 +2,7 @@ package core.utils
 
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.*
-import core.Vars
 import core.Vars.world
-import core.world.World
-import ktx.box2d.BodyDefinition
 import ktx.box2d.box
 import ktx.box2d.circle
 
@@ -24,9 +21,10 @@ object Box2dUtils {
         def.position.set(position)
         val collision: Body = world.box2dWorld.createBody(def)
         val fixtureDef = FixtureDef()
-        fixtureDef.shape = PolygonShape().apply { setAsBox(width, height, position, 0f) }
+        fixtureDef.shape = PolygonShape().apply { setAsBox(width, height, Vector2.Zero, 0f) }
         fixtureDef.filter.set(filter)
         collision.createFixture(fixtureDef)
+        collision.setTransform(position, 0f)
         return collision
     }
 

@@ -12,4 +12,6 @@ abstract class InputHandler : InputAdapter() {
         targetZoom = min(max(targetZoom, 0.01f), 1f)
         return false
     }
+
+    abstract fun update()
 }

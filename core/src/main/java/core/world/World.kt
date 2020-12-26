@@ -8,16 +8,19 @@ import ktx.box2d.createWorld
  */
 class World(width: Int, height: Int) {
     /** The box2d physics world. */
-    val box2dWorld = createWorld(Vector2(0f, 0f))
+    val box2dWorld = createWorld(Vector2.Zero)
     /** An array of tiles, see [Tiles]. */
     val tiles: Tiles = Tiles(width, height)
 
-    /** Utility class, holds tiles.  You can get tiles out with `tiles.get(x, y)` (java) or `tiles[x, y]` (kotlin) */
+    /** Utility class, holds tiles.  Tiles can be retrieved with `tiles.get(x, y)` (java) or `tiles[x, y]` (kotlin) */
     class Tiles(private val width: Int, private val height: Int) : Collection<Tile> {
         override val size = width * height
         private val tiles = Array(width * height) { index -> Tile(index % width, index / width).apply { block = Blocks.wall } }
 
-        operator fun get(x: Int, y: Int): Tile {
+        operator fun get(x: Int, y: Int): Tile? {
+            if (x < 0 || x > width || y < 0 || y > height) {
+                return null
+            }
             return tiles[y * width + x]
         }
 

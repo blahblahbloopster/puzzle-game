@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.Body
 interface Block {
     val name: String
 
-    /** Gets the collision body for a given [Group] */
-    fun collision(group: Group, tile: Tile): Body
+    /** Gets the collision body. */
+    fun collision(tile: Tile): Body
 
     /** Renders the block. */
     fun render(tile: Tile)

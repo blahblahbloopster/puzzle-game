@@ -17,8 +17,8 @@ class Tile(val x: Int, val y: Int) {
     }
 
     /** Gets the tile's collision body for a given group. */
-    fun collision(group: Group): Body {
-        return block?.collision(group, this) ?: Box2dUtils.nullCollision
+    fun collision(): Body {
+        return block?.collision(this) ?: Box2dUtils.nullCollision
     }
 
     fun update() {
