@@ -1,9 +1,7 @@
 package core.utils
 
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.physics.box2d.Body
-import com.badlogic.gdx.physics.box2d.BodyDef
-import com.badlogic.gdx.physics.box2d.Filter
+import com.badlogic.gdx.physics.box2d.*
 import core.Vars
 import core.Vars.world
 import core.world.World
@@ -20,12 +18,15 @@ object Box2dUtils {
     val nullCollision = nullCollision()
 
     /** Returns an immovable box body. */
-    fun staticBox(position: Vector2, width: Float, height: Float): Body {
+    fun staticBox(position: Vector2, width: Float, height: Float, filter: Filter): Body {
         val def = BodyDef()
         def.type = BodyDef.BodyType.StaticBody
         def.position.set(position)
         val collision: Body = world.box2dWorld.createBody(def)
-        collision.box(width, height)
+        val fixtureDef = FixtureDef()
+        fixtureDef.shape = PolygonShape().apply { setAsBox(width, height, position, 0f) }
+        fixtureDef.filter.set(filter)
+        collision.createFixture(fixtureDef)
         return collision
     }
 

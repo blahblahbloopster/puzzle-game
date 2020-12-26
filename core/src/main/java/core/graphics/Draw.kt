@@ -1,6 +1,6 @@
 @file:Suppress("LibGDXStaticResource")
 
-package core.utils
+package core.graphics
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
@@ -32,6 +32,14 @@ object Draw: Disposable {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         shapeRenderer.color = Vars.batch.color
         shapeRenderer.line(Vector2(x, y), Vector2(x2, y2))
+        shapeRenderer.end()
+    }
+
+    fun rectFilled(x: Float, y: Float, width: Float, height: Float) {
+        Gdx.gl.glLineWidth(stroke)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
+        shapeRenderer.color = Vars.batch.color
+        shapeRenderer.rect(x, y, width, height)
         shapeRenderer.end()
     }
 

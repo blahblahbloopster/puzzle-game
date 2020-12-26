@@ -2,16 +2,18 @@
 
 package core
 
-import com.badlogic.gdx.ApplicationAdapter
+import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.*
-import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import core.Vars.batch
-import core.utils.Draw
+import core.Vars.world
+import core.graphics.Renderer
+import core.input.DesktopInput
+import core.world.SolidBlock
 
 /** This is the main file.  It starts all the things. */
-object App : ApplicationAdapter() {
+object App : Game() {
     /**
      *  lateinit means it is initialized later.  This allows us to give it a non-nullable type.
      *  `var` makes it mutable.
@@ -22,16 +24,12 @@ object App : ApplicationAdapter() {
     override fun create() {
         batch = SpriteBatch()
         image = Texture("badlogic.png")
+        Gdx.input.inputProcessor = DesktopInput()
     }
 
     override fun render() {
-        // Clear screen
-        Gdx.gl.glClearColor(1f, 1f, 1f, 1f)
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-        batch.begin()
-        Draw.color(Color.BLACK)
-        Draw.line(0f, 0f, 100f, 100f)
-        batch.end()
+        Logic.update()  // todo: move
+        Renderer.render()
     }
 
     /** Frees memory */

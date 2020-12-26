@@ -15,7 +15,7 @@ class World(width: Int, height: Int) {
     /** Utility class, holds tiles.  You can get tiles out with `tiles.get(x, y)` (java) or `tiles[x, y]` (kotlin) */
     class Tiles(private val width: Int, private val height: Int) : Collection<Tile> {
         override val size = width * height
-        private val tiles = Array(width * height) { index -> Tile(index % width, index / width) }
+        private val tiles = Array(width * height) { index -> Tile(index % width, index / width).apply { block = Blocks.wall } }
 
         operator fun get(x: Int, y: Int): Tile {
             return tiles[y * width + x]

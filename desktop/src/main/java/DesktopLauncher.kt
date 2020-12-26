@@ -1,3 +1,4 @@
+import com.badlogic.gdx.backends.lwjgl3.DefaultLwjgl3Input
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import core.App
@@ -10,7 +11,7 @@ object DesktopLauncher {
     }
 
     private fun createApplication(): Lwjgl3Application {
-        defaultConfiguration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 3)
+//        defaultConfiguration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 3)
         return Lwjgl3Application(App, defaultConfiguration)
     }
 

@@ -1,5 +1,6 @@
 package core.world
 
+import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Body
 import core.geometry.Rotation
 import core.utils.Box2dUtils
@@ -9,14 +10,15 @@ class Tile(val x: Int, val y: Int) {
     var block: Block? = null
     /** The tile's rotation, as specified in [core.geometry.Rotation] */
     var rotation: Byte = Rotation.RIGHT
+    val pos: Vector2 = Vector2(x.toFloat(), y.toFloat())
 
     fun render() {
-        block?.render()
+        block?.render(this)
     }
 
     /** Gets the tile's collision body for a given group. */
     fun collision(group: Group): Body {
-        return block?.collision(group) ?: Box2dUtils.nullCollision
+        return block?.collision(group, this) ?: Box2dUtils.nullCollision
     }
 
     fun update() {
