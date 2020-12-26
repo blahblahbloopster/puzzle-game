@@ -18,4 +18,8 @@ class Tile(val x: Int, val y: Int) {
     fun collision(group: Group): Body {
         return block?.collision(group) ?: Box2dUtils.nullCollision
     }
+
+    fun update() {
+        block?.update(this)
+    }
 }

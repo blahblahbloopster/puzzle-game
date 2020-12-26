@@ -16,7 +16,6 @@ class World(width: Int, height: Int) {
     class Tiles(private val width: Int, private val height: Int) : Collection<Tile> {
         override val size = width * height
         private val tiles = Array(width * height) { index -> Tile(index % width, index / width) }
-        private var index = 0
 
         operator fun get(x: Int, y: Int): Tile {
             return tiles[y * width + x]
