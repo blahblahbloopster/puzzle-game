@@ -14,6 +14,10 @@ object Draw: Disposable {
     var stroke: Float = 1f
     private val shapeRenderer = ShapeRenderer()
 
+    fun update() {
+        shapeRenderer.projectionMatrix = App.camera.combined
+    }
+
     fun color(color: Color = Color.WHITE) {
         App.batch.color = color
     }
@@ -24,7 +28,6 @@ object Draw: Disposable {
 
     fun line(x: Float, y: Float, x2: Float, y2: Float) {
         Gdx.gl.glLineWidth(stroke)
-        shapeRenderer.projectionMatrix = App.camera.combined
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         shapeRenderer.color = App.batch.color
         shapeRenderer.line(Vector2(x, y), Vector2(x2, y2))

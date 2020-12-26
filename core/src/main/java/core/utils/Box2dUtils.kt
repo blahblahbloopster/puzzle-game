@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.physics.box2d.BodyDef
 import com.badlogic.gdx.physics.box2d.Filter
+import core.Vars
 import core.world.World
 import ktx.box2d.box
 
@@ -13,6 +14,7 @@ object Box2dUtils {
         nullFilter.categoryBits = 0
         nullFilter.maskBits = 0
     }
+    val nullCollision = nullCollision(Vars.world)
 
     /** Returns an immovable box body. */
     fun staticBox(world: World, position: Vector2, width: Float, height: Float): Body {

@@ -8,5 +8,4 @@ import ktx.box2d.createWorld
  */
 class World {
     val box2dWorld = createWorld(Vector2(0f, 0f))
-    val obstacles = mutableSetOf<Obstacle>()
 }

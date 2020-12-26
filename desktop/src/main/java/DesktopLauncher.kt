@@ -10,6 +10,7 @@ object DesktopLauncher {
     }
 
     private fun createApplication(): Lwjgl3Application {
+        defaultConfiguration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 3)
         return Lwjgl3Application(App, defaultConfiguration)
     }
 
