@@ -4,14 +4,18 @@ import com.badlogic.gdx.math.Vector2
 import core.graphics.Draw
 import core.utils.Box2dUtils
 import core.world.Group
+import kotlin.random.Random
 
 /** A circular player.  todo: find better name */
 class Player(val group: Group) {
-    private val body = Box2dUtils.circle(Vector2(0f, 0f), 1f)
+    private val radius = 0.4f
+    private val body = Box2dUtils.circle(Vector2(0f, 0f), radius)
     var offset = 0f
 
     init {
-        body.setTransform(5f, 20f, 0f)
+        body.setTransform(5f, Random(5).nextFloat() * 5 + 15, 0f)
+        body.linearDamping = 2f
+        body.massData.mass /= 5
     }
 
     fun update() {
@@ -19,7 +23,7 @@ class Player(val group: Group) {
 
     fun render() {
         Draw.color(group.color)
-        Draw.circle(body.position.x, body.position.y, 0.5f, 32)
+        Draw.circle(body.position.x, body.position.y, radius, 32)
     }
 
     fun control(vector2: Vector2) {

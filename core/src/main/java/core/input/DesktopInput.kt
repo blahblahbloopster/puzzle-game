@@ -14,7 +14,7 @@ class DesktopInput : InputHandler() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) movement.add(-1f, 0f)
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) movement.add(1f, 0f)
         movement.limit(1f)
-        movement.scl(10f)
+        movement.scl(20f)
         for (player in Vars.players) {
             player.control(movement)
         }

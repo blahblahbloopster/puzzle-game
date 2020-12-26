@@ -21,7 +21,7 @@ object Box2dUtils {
         def.position.set(position)
         val collision: Body = world.box2dWorld.createBody(def)
         val fixtureDef = FixtureDef()
-        fixtureDef.shape = PolygonShape().apply { setAsBox(width, height, Vector2.Zero, 0f) }
+        fixtureDef.shape = PolygonShape().apply { setAsBox(width / 2, height / 2, Vector2.Zero, 0f) }
         fixtureDef.filter.set(filter)
         collision.createFixture(fixtureDef)
         collision.setTransform(position, 0f)
