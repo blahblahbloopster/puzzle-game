@@ -15,4 +15,6 @@ object Vars {
     val world = World(10, 10)
     /** The list of players. */
     val players = mutableListOf<Player>()
+    /** Collision groups: */
+    const val WALL = 0b0100000000000000.toShort()
 }

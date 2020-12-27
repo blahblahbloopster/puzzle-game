@@ -10,7 +10,7 @@ object Logic {
 
     fun initialize() {
         Vars.players.add(Player(Group.BLACK))
-        Vars.players.add(Player(Group.BLACK).apply { offset = 30f })
+        Vars.players.add(Player(Group.WHITE).apply { offset = 30f })
         for (tile in Vars.world.tiles) {
             tile.collision()
         }

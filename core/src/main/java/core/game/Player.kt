@@ -9,7 +9,7 @@ import kotlin.random.Random
 /** A circular player.  todo: find better name */
 class Player(val group: Group) {
     private val radius = 0.4f
-    private val body = Box2dUtils.circle(Vector2(0f, 0f), radius)
+    private val body = Box2dUtils.circle(Vector2(0f, 0f), radius, group.filter)
     var offset = 0f
 
     init {

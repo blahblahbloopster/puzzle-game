@@ -3,7 +3,6 @@ package core.world
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Body
 import core.geometry.Rotation
-import core.utils.Box2dUtils
 
 class Tile(val x: Int, val y: Int) {
     /** The tile's current block. */
@@ -17,8 +16,8 @@ class Tile(val x: Int, val y: Int) {
     }
 
     /** Gets the tile's collision body for a given group. */
-    fun collision(): Body {
-        return block?.collision(this) ?: Box2dUtils.nullCollision
+    fun collision(): Body? {
+        return block?.collision(this)
     }
 
     fun update() {
