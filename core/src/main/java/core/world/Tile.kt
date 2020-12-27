@@ -23,4 +23,10 @@ class Tile(val x: Int, val y: Int) {
     fun update() {
         block?.update(this)
     }
+
+    fun set(tile: Tile?) {
+        tile ?: return
+        block = tile.block
+        rotation = tile.rotation
+    }
 }

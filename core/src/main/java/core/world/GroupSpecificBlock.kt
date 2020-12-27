@@ -6,7 +6,7 @@ import core.Vars
 import core.graphics.Draw
 import core.utils.Box2dUtils
 
-class GroupSpecificBlock(override val name: String, val allow: Set<Group>, val color: Color) : Block {
+class GroupSpecificBlock(override val name: String, val allow: Set<Group>, val color: Color) : Block() {
 
     override fun collision(tile: Tile): Body {
         val mskBits: Short = Group.sumOfCategoryBits(Group.values().toList().minus(allow))

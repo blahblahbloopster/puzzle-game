@@ -21,4 +21,6 @@ dependencies {
 	api "io.github.libktx:ktx-assets:$ktxAssetsVersion"
 	api "io.github.libktx:ktx-math:$ktxMathVersion"
 	api "io.github.libktx:ktx-style:$ktxStyleVersion"
+	api "io.github.libktx:ktx-json:$ktxStyleVersion"
+	implementation 'com.esotericsoftware:kryo:5.0.3'
 }

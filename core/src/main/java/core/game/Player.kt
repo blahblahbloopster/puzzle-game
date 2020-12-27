@@ -13,7 +13,7 @@ class Player(val group: Group) {
     var offset = 0f
 
     init {
-        body.setTransform(5f, Random(5).nextFloat() * 5 + 15, 0f)
+        body.setTransform(5f, 50f, 0f)
         body.linearDamping = 2f
         body.massData.mass /= 5
     }

@@ -11,7 +11,6 @@ object DesktopLauncher {
     }
 
     private fun createApplication(): Lwjgl3Application {
-//        defaultConfiguration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 3)
         return Lwjgl3Application(App, defaultConfiguration)
     }
 
@@ -21,6 +20,7 @@ object DesktopLauncher {
             configuration.setTitle("puzzle-game-2")
             configuration.setWindowedMode(640, 480)
             configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png")
+            configuration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 4)
             return configuration
         }
 }

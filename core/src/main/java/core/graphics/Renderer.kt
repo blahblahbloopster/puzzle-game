@@ -3,8 +3,10 @@ package core.graphics
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.GL30
 import core.App.camera
 import core.Vars
+import core.Vars.batch
 import core.Vars.players
 import core.Vars.world
 import core.game.Player
@@ -24,10 +26,14 @@ object Renderer {
         Draw.update()
 
         // Clear screen
-        Gdx.gl.glClearColor(1f, 1f, 1f, 1f)
+//        Gdx.gl.glClear()
+        Gdx.gl.glClearColor(Colors.WALL.r, Colors.WALL.g, Colors.WALL.b, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-
-        Vars.batch.begin()
+        Gdx.gl.glClear(GL20.GL_STENCIL_BUFFER_BIT)
+        batch.enableBlending()
+        batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
+//        batch.enableBlending()
+        batch.begin()
 
         // Draw each tile
         world.tiles.forEach(Tile::render)
@@ -36,6 +42,6 @@ object Renderer {
         players.forEach(Player::render)
         Draw.color()
 
-        Vars.batch.end()
+        batch.end()
     }
 }
