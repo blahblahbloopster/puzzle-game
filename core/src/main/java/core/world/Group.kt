@@ -6,8 +6,8 @@ import kotlin.experimental.or
 
 /** Represents color groups. */
 enum class Group(override val filter: Filter, override val color: Color) : Grp {
-    BLACK(generateFilter(0b0000000000000001, 0b111111111111111.toShort()), Color.BLACK.cpy().add(0.1f, 0.1f, 0.1f, 0.0f)),
-    WHITE(generateFilter(0b0000000000000010, 0b111111111111111.toShort()), Color.WHITE.cpy().sub(0.1f, 0.1f, 0.1f, 0.0f));
+    BLACK(generateFilter(0b0000000000000001, 0b111111111111111.toShort()), Color.BLACK.cpy()),
+    WHITE(generateFilter(0b0000000000000010, 0b111111111111111.toShort()), Color.WHITE.cpy());
 
     companion object {
         fun sumOfCategoryBits(groups: Collection<Grp>): Short {

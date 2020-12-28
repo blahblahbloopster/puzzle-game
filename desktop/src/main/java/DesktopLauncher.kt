@@ -1,7 +1,7 @@
-import com.badlogic.gdx.backends.lwjgl3.DefaultLwjgl3Input
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import core.App
+import core.world.ImageLevelReader
 
 /** Launches the desktop (LWJGL3) application.  */
 object DesktopLauncher {
@@ -20,7 +20,7 @@ object DesktopLauncher {
             configuration.setTitle("puzzle-game-2")
             configuration.setWindowedMode(640, 480)
             configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png")
-            configuration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 4)
+            configuration.setBackBufferConfig(8, 8, 8, 8, 16, 0, 8)
             return configuration
         }
 }

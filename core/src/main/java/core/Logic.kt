@@ -1,17 +1,11 @@
 package core
 
-import com.esotericsoftware.kryo.io.Input
-import com.esotericsoftware.kryo.io.Output
-import core.Vars.kryo
 import core.Vars.world
 import core.game.Player
 import core.graphics.Draw
 import core.world.Group
 import core.world.Tile
-import core.world.World
-import java.io.File
-import java.util.zip.DeflaterOutputStream
-import java.util.zip.InflaterInputStream
+import core.world.load
 
 /** The main game logic.  This updates the physics and mechanics. */
 object Logic {
@@ -19,10 +13,11 @@ object Logic {
 
     fun initialize() {
         Serialization
-        Vars.players.add(Player(Group.BLACK))
-        Vars.players.add(Player(Group.WHITE).apply { offset = 30f })
 
-//        world.load("test1.pzgl")
+        world = load("foo.pzgl")
+
+//        world.players.add(Player(Group.BLACK, 10f, 10f))
+//        world.players.add(Player(Group.WHITE, 10f, 10f).apply { offset = 30f })
 
         for (tile in world.tiles) {
             tile.collision()
@@ -41,11 +36,11 @@ object Logic {
         // Time since the last frame
         val delta = 1 / 60f  // todo: make this actually calculated instead of fixed, move somewhere else
 
-        Vars.world.box2dWorld.step(delta, 1, 1)
+        world.box2dWorld.step(1 / 60f, 1, 1)
 
         // Update all tiles
         world.tiles.forEach(Tile::update)
 
-        Vars.players.forEach(Player::update)
+        world.players.forEach(Player::update)
     }
 }

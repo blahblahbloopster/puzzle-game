@@ -13,9 +13,7 @@ object Vars {
     /** The [com.badlogic.gdx.graphics.g2d.SpriteBatch].*/
     lateinit var batch: Batch
     /** The current world. */
-    val world = World(30, 30)
-    /** The list of players. */
-    val players = mutableListOf<Player>()
+    var world = World(50, 50)
     /** Collision groups: */
     const val WALL = 0b0100000000000000.toShort()
     /** Serializer. */

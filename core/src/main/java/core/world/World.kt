@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import core.Vars.kryo
+import core.game.Player
 import ktx.box2d.createWorld
 import java.io.File
 import java.util.zip.DeflaterOutputStream
@@ -14,14 +15,16 @@ import java.util.zip.InflaterInputStream
  */
 class World(width: Int, height: Int) {
     /** The box2d physics world. */
-    val box2dWorld = createWorld(Vector2.Zero)
+    @Transient val box2dWorld = createWorld(Vector2.Zero)
     /** An array of tiles, see [Tiles]. */
     var tiles: Tiles = Tiles(width, height)
+    /** The list of players. */
+    val players = mutableListOf<Player>()
 
     /** Utility class, holds tiles.  Tiles can be retrieved with `tiles.get(x, y)` (java) or `tiles[x, y]` (kotlin) */
     class Tiles(val width: Int, val height: Int) : Collection<Tile> {
         override val size = width * height
-        private val tiles = Array(width * height) { index -> Tile(index % width, index / width).apply { block = if (index / 2 % 3 == 0) Blocks.whiteGroupOnly else Blocks.blackGroupOnly } }
+        private val tiles = Array(width * height) { index -> Tile(index % width, index / width).apply { block = null } }
 
         operator fun get(x: Int, y: Int): Tile? {
             if (x < 0 || x > width || y < 0 || y > height) {
@@ -45,19 +48,25 @@ class World(width: Int, height: Int) {
         override fun iterator(): Iterator<Tile> {
             return tiles.iterator()
         }
-    }
 
-    fun save(filename: String) {
-        val file = File(filename)
-        val output = Output(DeflaterOutputStream(file.outputStream()))
-        kryo.writeObject(output, tiles)
-        output.close()
+        fun forEachXY(block: (x: Int, y: Int, tile: Tile) -> Unit) {
+            forEachIndexed { index, tile -> block(index % width, index / width, tile) }
+        }
     }
+}
 
-    fun load(filename: String) {
-        val file = File(filename)
-        val input = Input(InflaterInputStream(file.inputStream()))
-        tiles = kryo.readObject(input, Tiles::class.java)
-        input.close()
-    }
+
+fun save(filename: String, world: World) {
+    val file = File(filename)
+    val output = Output(DeflaterOutputStream(file.outputStream()))
+    kryo.writeObject(output, world)
+    output.close()
+}
+
+fun load(filename: String): World {
+    val file = File(filename)
+    val input = Input(InflaterInputStream(file.inputStream()))
+    val world = kryo.readObject(input, World::class.java)
+    input.close()
+    return world
 }
